@@ -4,9 +4,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   token: localStorage.getItem('token') || null,
   username: localStorage.getItem('nickname') || '',
-  modalChannelId: '',
-  modalChannelName: '',
-  showModal: '',
   currentChannelId: '',
   currentChannelName: '',
 };
@@ -25,11 +22,6 @@ const appSlice = createSlice({
       localStorage.removeItem('token');
       localStorage.removeItem('nickname');
     },
-    setChannelModal(state, action) {
-      state.modalChannelId = action.payload.id;
-      state.modalChannelName = action.payload.name;
-      state.showModal = action.payload.modalName;
-    },
     changeChannel(state, action) {
       const { name, id } = action.payload;
       state.currentChannelId = id;
@@ -39,6 +31,6 @@ const appSlice = createSlice({
 });
 
 export const {
-  setUserData, clearUserData, setChannelModal, changeChannel,
+  setUserData, clearUserData, changeChannel,
 } = appSlice.actions;
 export default appSlice.reducer;

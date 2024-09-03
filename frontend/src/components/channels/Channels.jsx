@@ -10,10 +10,11 @@ import {
   useGetChannelsQuery,
 } from '../../api/channels';
 import Channel from './Channel';
-import { changeChannel, setChannelModal, setUserData } from '../../store/slices/appSlice';
+import { changeChannel, setUserData } from '../../store/slices/appSlice';
 import ModalContainer from '../modals';
 import { appPaths } from '../../routes';
 import { SocketContext } from '../../context/socket';
+import { setChannelModal } from '../../store/slices/modalSlice';
 
 const Channels = () => {
   const socket = useContext(SocketContext);

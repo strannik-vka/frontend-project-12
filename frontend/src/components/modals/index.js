@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import NewChannel from './NewChannel';
-import { setChannelModal } from '../../store/slices/appSlice';
+import { setChannelModal } from '../../store/slices/modalSlice';
 import { useGetChannelsQuery } from '../../api/channels';
 import RenameChannel from './RenameChannel';
 import DeleteChannel from './DeleteChannel';
@@ -17,7 +17,7 @@ const ModalContainer = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentChannelId = useSelector((state) => state.app.currentChannelId);
-  const modalChannelId = useSelector((state) => state.app.modalChannelId);
+  const modalChannelId = useSelector((state) => state.modal.modalChannelId);
   const { data: channels = [] } = useGetChannelsQuery();
   const channelsNames = channels.map((channel) => channel.name);
   const channelNameSchema = Yup.object().shape({
@@ -30,7 +30,7 @@ const ModalContainer = () => {
   const handleCloseModal = () => {
     dispatch(setChannelModal({ id: '', name: '', modalName: '' }));
   };
-  const showModal = useSelector((state) => state.app.showModal);
+  const showModal = useSelector((state) => state.modal.showModal);
   const ModalComponent = modals[showModal];
   if (!ModalComponent) {
     return null;

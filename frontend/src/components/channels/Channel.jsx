@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { changeChannel, setChannelModal } from '../../store/slices/appSlice';
+import { changeChannel } from '../../store/slices/appSlice';
+import { setChannelModal } from '../../store/slices/modalSlice';
 
 const Channel = ({ data }) => {
   const dispatch = useDispatch();

@@ -18,7 +18,7 @@ const RenameChannel = (props) => {
   } = props;
   const input = useRef();
   const [updateChannel] = useUpdateChannelMutation();
-  const modalChannelName = useSelector((state) => state.app.modalChannelName);
+  const modalChannelName = useSelector((state) => state.modal.modalChannelName);
 
   const renameChannel = async (values) => {
     try {
