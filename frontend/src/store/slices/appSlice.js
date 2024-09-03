@@ -4,8 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   token: localStorage.getItem('token') || null,
   username: localStorage.getItem('nickname') || '',
-  currentChannelId: '',
-  currentChannelName: '',
+  currentChannel: {},
 };
 
 const appSlice = createSlice({
@@ -23,9 +22,7 @@ const appSlice = createSlice({
       localStorage.removeItem('nickname');
     },
     changeChannel(state, action) {
-      const { name, id } = action.payload;
-      state.currentChannelId = id;
-      state.currentChannelName = name;
+      state.currentChannel = action.payload;
     },
   },
 });

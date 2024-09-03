@@ -13,7 +13,7 @@ const Messages = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const currentChannelId = useSelector((state) => state.app.currentChannelId);
-  const currentChannelName = useSelector((state) => state.app.currentChannelName);
+  const currentChannelName = useSelector((state) => state.app.currentChannel.name);
   const filteredMessages = messages.filter((message) => message.channelId === currentChannelId);
   const messagesContainer = useRef();
   useEffect(() => {
