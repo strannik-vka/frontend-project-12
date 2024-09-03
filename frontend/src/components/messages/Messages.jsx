@@ -1,12 +1,14 @@
 import Col from 'react-bootstrap/esm/Col';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { messagesApi, useGetMessagesQuery } from '../../api/messages';
 import Message from './Message';
-import socket from '../../socket';
+import { SocketContext } from '../../context/socket';
 
 const Messages = () => {
+  const socket = useContext(SocketContext);
+
   const { data: messages = [] } = useGetMessagesQuery();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -25,7 +27,7 @@ const Messages = () => {
     return () => {
       socket.off('newMessage');
     };
-  }, [dispatch]);
+  }, [socket, dispatch]);
   return (
     <Col className="p-0 h-100">
       <div className="d-flex flex-column h-100">

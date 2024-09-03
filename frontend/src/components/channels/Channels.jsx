@@ -2,7 +2,7 @@ import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -12,10 +12,12 @@ import {
 import Channel from './Channel';
 import { changeChannel, setChannelModal, setUserData } from '../../store/slices/appSlice';
 import ModalContainer from '../modals';
-import socket from '../../socket';
 import { appPaths } from '../../routes';
+import { SocketContext } from '../../context/socket';
 
 const Channels = () => {
+  const socket = useContext(SocketContext);
+
   const { data: channels = [], error: channelError } = useGetChannelsQuery();
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -66,7 +68,7 @@ const Channels = () => {
       socket.off('removeChannel');
       socket.off('renameChannel');
     };
-  }, [dispatch, channelError, navigate]);
+  }, [socket, dispatch, channelError, navigate]);
 
   return (
     <Col xs="4" md="2" className="border-end px-0 bg-light flex-column h-100 d-flex">
