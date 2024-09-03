@@ -9,7 +9,7 @@ import { setChannelModal } from '../../store/slices/modalSlice';
 
 const Channel = ({ data }) => {
   const dispatch = useDispatch();
-  const currentChannelId = useSelector((state) => state.app.currentChannelId);
+  const currentChannelId = useSelector((state) => state.app.currentChannel.id);
   const variantButton = data.id === currentChannelId ? 'secondary' : 'light';
   const { t } = useTranslation();
   const switchChannel = () => {

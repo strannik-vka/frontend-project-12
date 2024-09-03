@@ -16,7 +16,7 @@ const modals = {
 const ModalContainer = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const currentChannelId = useSelector((state) => state.app.currentChannelId);
+  const currentChannelId = useSelector((state) => state.app.currentChannel.id);
   const modalChannelId = useSelector((state) => state.modal.modalChannelId);
   const { data: channels = [] } = useGetChannelsQuery();
   const channelsNames = channels.map((channel) => channel.name);

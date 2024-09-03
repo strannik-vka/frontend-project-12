@@ -12,7 +12,7 @@ const Messages = () => {
   const { data: messages = [] } = useGetMessagesQuery();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const currentChannelId = useSelector((state) => state.app.currentChannelId);
+  const currentChannelId = useSelector((state) => state.app.currentChannel.id);
   const currentChannelName = useSelector((state) => state.app.currentChannel.name);
   const filteredMessages = messages.filter((message) => message.channelId === currentChannelId);
   const messagesContainer = useRef();

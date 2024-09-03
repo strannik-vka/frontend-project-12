@@ -22,7 +22,7 @@ const Channels = () => {
   const { data: channels = [], error: channelError } = useGetChannelsQuery();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const currentChannelId = useSelector((state) => state.app.currentChannelId);
+  const currentChannelId = useSelector((state) => state.app.currentChannel.id);
   const navigate = useNavigate();
   const defaultChannel = { id: '1', name: 'general' };
 

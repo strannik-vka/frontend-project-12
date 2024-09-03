@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useAddMessageMutation } from '../../api/messages';
 
 const Message = () => {
-  const currentChannelId = useSelector((state) => state.app.currentChannelId);
+  const currentChannelId = useSelector((state) => state.app.currentChannel.id);
   const username = useSelector((state) => state.app.username);
   const [addMessage] = useAddMessageMutation();
   const { t } = useTranslation();
