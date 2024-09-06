@@ -45,9 +45,9 @@ const NewChannel = (props) => {
           validationSchema={channelNameSchema}
         >
           {({
-            values, handleChange, handleSubmit, errors,
+            values, handleChange, handleSubmit, errors, isSubmitting,
           }) => (
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={isSubmitting ? () => { } : handleSubmit}>
               <Form.Label htmlFor="channelName">{t('form.labels.channelName')}</Form.Label>
               <Form.Control value={values.channelName} name="channelName" onChange={handleChange} id="channelName" isInvalid={!!errors.channelName} autoFocus />
               <Form.Control.Feedback type="invalid">{errors.channelName}</Form.Control.Feedback>

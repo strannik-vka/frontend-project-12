@@ -54,9 +54,9 @@ const RenameChannel = (props) => {
           onSubmit={renameChannel}
         >
           {({
-            values, handleChange, handleSubmit, errors,
+            values, handleChange, handleSubmit, errors, isSubmitting,
           }) => (
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={isSubmitting ? () => { } : handleSubmit}>
               <Form.Label htmlFor="channelName" visuallyHidden>{t('form.labels.channelName')}</Form.Label>
               <Form.Control
                 ref={input}
