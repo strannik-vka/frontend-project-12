@@ -25,7 +25,8 @@ const ModalContainer = () => {
       .notOneOf(channelsNames, t('channelExists'))
       .min(3, t('form.errors.range'))
       .max(20, t('form.errors.range'))
-      .required(t('form.errors.required')),
+      .required(t('form.errors.required'))
+      .trim(),
   });
   const handleCloseModal = () => {
     dispatch(setChannelModal({ id: '', name: '', modalName: '' }));
