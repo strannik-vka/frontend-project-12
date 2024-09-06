@@ -21,7 +21,7 @@ const NewChannel = (props) => {
     try {
       const { channelName } = values;
       const data = {
-        name: filter.clean(channelName),
+        name: filter.clean(channelName.trim()),
         removable: true,
       };
       const payload = await addChannel(data).unwrap();

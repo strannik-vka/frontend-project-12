@@ -24,7 +24,7 @@ const RenameChannel = (props) => {
     try {
       const { channelName, channelId } = values;
       const data = {
-        name: filter.clean(channelName),
+        name: filter.clean(channelName.trim()),
         removable: true,
         id: channelId,
       };
