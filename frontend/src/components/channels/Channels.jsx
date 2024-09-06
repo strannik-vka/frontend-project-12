@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   channelsApi,
@@ -15,13 +15,14 @@ import ModalContainer from '../modals';
 import { appPaths } from '../../routes';
 import { SocketContext } from '../../context/socket';
 import { setChannelModal } from '../../store/slices/modalSlice';
+import store from '../../store/index';
 
 const Channels = () => {
   const socket = useContext(SocketContext);
 
   const { data: channels = [], error: channelError } = useGetChannelsQuery();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const { dispatch } = store;
   const currentChannelId = useSelector((state) => state.app.currentChannel.id);
   const navigate = useNavigate();
   const defaultChannel = { id: '1', name: 'general' };
@@ -48,11 +49,20 @@ const Channels = () => {
       }));
     };
     const handleRemoveChannel = ({ id }) => {
-      dispatch(channelsApi.util.updateQueryData(
-        'getChannels',
-        undefined,
-        (draft) => draft.filter((curChannels) => curChannels.id !== id),
-      ));
+      const { app } = store.getState();
+
+      console.log(id, app.currentChannel.id);
+
+      if (id === app.currentChannel.id) {
+        dispatch(changeChannel(defaultChannel));
+      }
+
+      dispatch(channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
+        const index = draft.findIndex((curChannels) => curChannels.id === id);
+        draft.splice(index, 1);
+
+        console.log('handleRemoveChannel');
+      }));
     };
     const handleRenameChannel = ({ id, name }) => {
       dispatch(channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
