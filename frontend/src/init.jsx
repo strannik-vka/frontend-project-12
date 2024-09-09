@@ -1,7 +1,6 @@
 import React from 'react';
 import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import filter from 'leo-profanity';
 import intervalPlural from 'i18next-intervalplural-postprocessor';
 import App from './App';
 import resources from './locales';
@@ -10,6 +9,7 @@ import { socket } from './context/socket';
 import store from './store/index';
 import { channelsApi } from './api/channels';
 import { changeChannel, defaultChannel } from './store/slices/appSlice';
+import { filter } from './context/filter';
 
 const init = async () => {
   const { dispatch } = store;

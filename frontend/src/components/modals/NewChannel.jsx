@@ -3,11 +3,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
-import * as filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useAddChannelMutation } from '../../api/channels';
 import { changeChannel } from '../../store/slices/appSlice';
+import { filter } from '../../context/filter';
 
 const NewChannel = (props) => {
   const dispatch = useDispatch();
