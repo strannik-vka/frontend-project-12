@@ -4,14 +4,13 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useRemoveChannelMutation } from '../../api/channels';
-import { changeChannel } from '../../store/slices/appSlice';
+import { changeChannel, defaultChannel } from '../../store/slices/appSlice';
 
 const DeleteChannel = (props) => {
   const {
     handleCloseModal, showModal, currentChannelId, modalChannelId,
   } = props;
   const [removeChannel] = useRemoveChannelMutation();
-  const defaultChannel = { id: '1', name: 'general' };
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const deleteChannel = async (id) => {
