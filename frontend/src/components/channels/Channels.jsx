@@ -2,7 +2,7 @@ import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -19,6 +19,8 @@ import store from '../../store/index';
 
 const Channels = () => {
   const socket = useContext(SocketContext);
+  const ChannelsStart = useRef();
+  const ChannelsEnd = useRef();
 
   const { data: channels = [], error: channelError } = useGetChannelsQuery();
   const { t } = useTranslation();
@@ -47,6 +49,10 @@ const Channels = () => {
       dispatch(channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
         draft.push(channel);
       }));
+
+      setTimeout(() => {
+        ChannelsEnd.current?.scrollIntoView();
+      }, 1000);
     };
     const handleRemoveChannel = ({ id }) => {
       const { app } = store.getState();
@@ -55,6 +61,8 @@ const Channels = () => {
 
       if (id === app.currentChannel.id) {
         dispatch(changeChannel(defaultChannel));
+
+        ChannelsStart.current?.scrollIntoView();
       }
 
       dispatch(channelsApi.util.updateQueryData('getChannels', undefined, (draft) => {
@@ -90,9 +98,11 @@ const Channels = () => {
         </Button>
       </div>
       <Nav className="flex-column nav-fill px-2 mb-3 overflow-auto h-100 d-block">
+        <div ref={ChannelsStart} />
         {channels.map((channel) => (
           <Channel key={channel.id} data={channel} />
         ))}
+        <div ref={ChannelsEnd} />
       </Nav>
       <ModalContainer />
     </Col>
