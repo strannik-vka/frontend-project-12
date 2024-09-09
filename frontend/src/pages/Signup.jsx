@@ -42,8 +42,6 @@ const Signup = () => {
     };
     const { data, error } = await signup(user);
     if (data) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('nickname', nickname);
       dispatch(setUserData({ token: data.token, nickname }));
       navigate(appPaths.home());
     }

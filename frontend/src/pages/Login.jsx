@@ -29,8 +29,6 @@ const Login = () => {
     };
     const { data, error } = await login(user);
     if (data) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('nickname', nickname);
       dispatch(setUserData({ token: data.token, nickname }));
       navigate(appPaths.home());
     }

@@ -17,6 +17,8 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setUserData(state, action) {
+      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('nickname', action.payload.nickname);
       state.token = action.payload.token;
       state.username = action.payload.nickname;
     },
