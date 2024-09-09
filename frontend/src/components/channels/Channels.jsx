@@ -47,7 +47,7 @@ const Channels = () => {
 
     if (currentChannel.id === defaultChannel.id) {
       ChannelsStart.current?.scrollIntoView();
-    } else if (currentChannel.id === LastChannel.id) {
+    } else if (currentChannel.id === LastChannel?.id) {
       setTimeout(() => {
         ChannelsEnd.current?.scrollIntoView();
       }, 1000);
